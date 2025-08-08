@@ -7,7 +7,7 @@ __pycache__/
 *.pyo
 *.pyd
 *.pkl
-*.json
+# *.json
 
 # VS Code
 .vscode/
@@ -21,4 +21,4 @@ Thumbs.db
 
 # Model files
 xg_boost_model.pkl
-min_max_scaler.save
+# min_max_scaler.save
