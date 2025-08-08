@@ -1,0 +1,24 @@
+# Dev Containers
+.devcontainer/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+*.json
+
+# VS Code
+.vscode/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Model files
+xg_boost_model.pkl
+min_max_scaler.save
