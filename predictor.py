@@ -1,10 +1,21 @@
 import joblib
 import numpy as np
 import pandas as pd
+from xgboost import XGBRegressor
 
-# Load model dan scaler
-model = joblib.load("xg_boost_model.pkl")
-scaler = joblib.load("min_max_scaler.save")
+
+# Load model
+model = XGBRegressor()
+model.load_model("models/xg_boost_model.json")
+
+# Load scaler
+scaler = joblib.load("models/min_max_scaler.save")
+
+# # Load scaler
+# model = joblib.load("xg_boost_model.pkl")
+# scaler = joblib.load("min_max_scaler.save")
+
+print(type(model))
 
 
 def get_price(
@@ -227,17 +238,20 @@ def get_price(
     test_df = pd.DataFrame(test_array, columns=features)
 
     # scaling data
-    scaler_filename = "min_max_scaler.save"
+    scaler_filename = "models/min_max_scaler.save"
     scaler = joblib.load(scaler_filename)
     scaler.clip = False
     test_df[scale_vars] = scaler.transform(test_df[scale_vars])
 
-    # declare path where you saved your model
-    model_path = "xg_boost_model.pkl"
-    # open file
-    file = open(model_path, "rb")
-    # load the trained model
-    trained_model = joblib.load(file)
+    # # declare path where you saved your model
+    # model_path = "models/xg_boost_model.json"
+    # # open file
+    # file = open(model_path, "rb")
+    # # load the trained model
+    # trained_model = joblib.load(file)
+    model_path = "models/xg_boost_model.json"
+    trained_model = XGBRegressor()
+    trained_model.load_model(model_path)
 
     prediction = int(trained_model.predict(test_df))
     return prediction

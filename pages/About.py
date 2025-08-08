@@ -70,7 +70,7 @@ st.markdown(
 )
 
 # ===== Load Dataset =====
-df = pd.read_csv("car_dataset.csv")
+df = pd.read_csv("data/car_dataset.csv")
 
 # ===== Dataset Overview =====
 with st.container():
