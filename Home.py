@@ -4,9 +4,33 @@ from predictor import get_price
 st.markdown(
     """
     <style>
-     .main {
-            background-color: #f7f9fc;
-        }
+    body, .main, .block-container {
+        background-color: #f7f9fc !important;
+    }
+
+    /* Sidebar background */
+    .css-6qob1r.e1fqkh3o3 {
+        background-color: #f7f9fc !important;
+    }
+
+    section[data-testid="stSidebar"] {
+        box-shadow: none;
+    }
+    
+      /* ===== Top bar / navbar ===== */
+    header[data-testid="stHeader"] {
+        background-color: #f7f9fc !important;
+        box-shadow: none;
+    }
+
+    header[data-testid="stHeader"] > div {
+        background-color: #f7f9fc !important;
+    }
+
+    /* Optional text color */
+    .css-1v0mbdj, .css-1v3fvcr {
+        color: #333333 !important;
+    }
         .header-container {
             background-image: url('https://images.unsplash.com/photo-1630369281377-839f10973a72?q=80&w=1170&auto=format&fit=crop');
             background-size: cover;
@@ -49,7 +73,7 @@ st.markdown(
         }
 
         .stButton button {
-            background-color: #d6ff00;
+            background-color: #b5f3f5;
             color: black;
             font-weight: bold;
             padding: 0.75em 2em;
@@ -58,7 +82,16 @@ st.markdown(
         }
 
         .stButton button:hover {
-            background-color: #bada00;
+            background-color: #50e5eb;
+            color: black;
+        }
+        
+        .stButton button:focus,
+        .stButton button:active,
+        .stButton button:visited {
+            color: black !important;
+            outline: none !important;
+            box-shadow: none !important;
         }
 
         .scroll-button {
@@ -66,7 +99,7 @@ st.markdown(
             display: inline-block;
             padding: 12px 25px;
             font-size: 16px;
-            background-color: #d6ff00;
+            background-color: #b5f3f5;
             color: black;
             font-weight: bold;
             border: none;
@@ -75,7 +108,7 @@ st.markdown(
         }
 
         .scroll-button:hover {
-            background-color: #bada00;
+            background-color: #50e5eb;
             color: black;
         }
 
@@ -126,8 +159,8 @@ with col2:
     )
     kilometers_run = st.number_input("Jarak Tempuh (km)", min_value=0, value=60000)
 
-col_btn1, col_btn2, col_btn3 = st.columns([1, 2, 1])
-with col_btn2:
+col_btn1, col_btn2, col_btn3 = st.columns([2, 1, 1])
+with col_btn1:
     if st.button("Price Prediction"):
         harga = get_price(
             transmission,
@@ -139,8 +172,37 @@ with col_btn2:
             engine_capacity,
             kilometers_run,
         )
-        st.success(f"💰 Estimated Car Price: ${harga:,.2f}")
+        st.markdown(
+            f"""
+    <div style="
+        background-color: #50e5eb;
+        padding: 16px;
+        border-radius: 8px;
+        border-left: 6px solid #339af0;
+        color: #084298;
+        font-weight: 500;
+        font-size: 18px;">
+        💰 Estimated Car Price: <strong>${harga:,.2f}</strong>
+    </div>
+    """,
+            unsafe_allow_html=True,
+        )
 
 st.markdown("</div>", unsafe_allow_html=True)
 
-st.sidebar.success("Choose a page above.")
+st.sidebar.markdown(
+    """
+    <div style="
+        background-color: #cce5ff;
+        padding: 12px;
+        border-radius: 8px;
+        border-left: 6px solid #339af0;
+        color: #084298;
+        font-weight: 500;
+        font-size: 16px;
+        margin-bottom: 1rem;">
+        📘 Choose a page above.
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
