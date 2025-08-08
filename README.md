@@ -22,7 +22,7 @@ A Streamlit web application to predict the price of used cars based on several k
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/yourusername/carPrice.git
+   git clone https://github.com/mshaffira14/carPrice.git
    cd carPrice
 
 2. Install dependencies:
