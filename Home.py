@@ -1,5 +1,6 @@
 import streamlit as st
 from predictor import get_price
+from predictor import brand_dict, car_model_dict
 
 st.markdown(
     """
@@ -141,7 +142,11 @@ st.markdown(
 col1, col2 = st.columns(2)
 with col1:
     transmission = st.selectbox("Transmission", ["0 (Manual)", "1 (Automatic)"])
-    brand = st.text_input("Make (Merek)", "Toyota")
+    brand = st.selectbox(
+        "Make (Merek)",
+        list(brand_dict.keys()),
+        index=list(brand_dict.keys()).index("Toyota") if "Toyota" in brand_dict else 0,
+    )
     model_year = st.number_input(
         "Tahun Mobil", min_value=1980, max_value=2025, value=2009
     )
@@ -153,7 +158,15 @@ with col2:
     fuel_type = st.selectbox(
         "Fuel Type", ["OIL", "HYBRID", "LPG and OIL", "CNG and OIL"]
     )
-    model = st.text_input("Model", "Allion")
+    model = st.selectbox(
+        "Model",
+        list(car_model_dict.keys()),
+        index=(
+            list(car_model_dict.keys()).index("Allion")
+            if "Allion" in car_model_dict
+            else 0
+        ),
+    )
     body_type = st.selectbox(
         "Tipe Body", ["Saloon", "SUV", "Hatchback", "Station Wagon"]
     )
